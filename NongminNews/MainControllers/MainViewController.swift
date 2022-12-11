@@ -36,11 +36,23 @@ class MainViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var publishDateLabel: UILabel!
     @IBOutlet weak var todayHeadlineNewsBtn: UIButton!
+    @IBOutlet weak var weatherView: UIView!
     @IBOutlet weak var bottomTabbarView: UIView!
     @IBOutlet weak var safeAreaView: UIView!
     
+    @IBOutlet weak var wn_icon: UIImageView?
+    @IBOutlet weak var wn_T1_label: UILabel?
+    @IBOutlet weak var wn_T1D_label: UILabel?
+    @IBOutlet weak var wn_Mx_label: UILabel?
+    @IBOutlet weak var wn_Mn_label: UILabel?
+    
     @IBOutlet weak var mainTabbarHeight: NSLayoutConstraint!
     @IBOutlet var tabBarBtns:[UIButton] = []
+    
+    // XML parser
+    var xmlDict = [String: Any]()
+    var xmlDictArr:Array<[String:Any]> = []
+    var currentElement = ""
     
     var pageInfoArr = [PaperData]()
     var paperThumnailArr = [String]()
@@ -104,7 +116,7 @@ class MainViewController: UIViewController {
         }
         wv.allowsBackForwardNavigationGestures = true
         wv.allowsLinkPreview = false
-
+        
         return wv
     }()
     
@@ -161,7 +173,15 @@ class MainViewController: UIViewController {
         tabBarBtns[selectedIndex].addSubview(paperBadge)
         tabBarBtns[2].addSubview(favoriteBadge)
         
-        createTodayHeadlineBtn()
+        let weatherViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        self.weatherView.addGestureRecognizer(weatherViewTapGesture)
+        
+        // 위경도 가져오기
+        LocationManager.shared.getCurrentLocation()
+//        self.setCurrentWeather()
+        
+        
+        self.createTodayHeadlineBtn()
         
         if let request = initRequest(Const.WebUrl.appMenu) {
             self.menuWebView.load(request)
@@ -241,19 +261,19 @@ class MainViewController: UIViewController {
         return nil
     }
     /*
-    func setRequestHeader(_ request: inout URLRequest) {
-        let token = USER_DATA.authToken
-        
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("ios", forHTTPHeaderField: "Platform")
-        
-        if token.isEmpty {
-            request.setValue("", forHTTPHeaderField: "Authorization")
-        } else {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-    }
-    */
+     func setRequestHeader(_ request: inout URLRequest) {
+     let token = USER_DATA.authToken
+     
+     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+     request.setValue("ios", forHTTPHeaderField: "Platform")
+     
+     if token.isEmpty {
+     request.setValue("", forHTTPHeaderField: "Authorization")
+     } else {
+     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+     }
+     }
+     */
     
     func setCookieValue() {
         let urlString = Const.target.nongminApiUrl
@@ -334,7 +354,7 @@ class MainViewController: UIViewController {
     func setUpPaperMainView() {
         // Get the reference to the CenteredCollectionViewFlowLayout (REQURED)
         centeredCollectionViewFlowLayout = (collectionView.collectionViewLayout as! CenteredCollectionViewFlowLayout)
-
+        
         // Modify the collectionView's decelerationRate (REQURED)
         collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         collectionView.showsHorizontalScrollIndicator = false
@@ -342,7 +362,7 @@ class MainViewController: UIViewController {
         // Assign delegate and data source
         collectionView.delegate = self
         collectionView.dataSource = self
-
+        
         print("\(view.bounds.width),\(view.bounds.height)")
         print("\(collectionView.bounds.width),\(collectionView.bounds.height)")
         // Configure the required item size (REQURED)
@@ -361,12 +381,46 @@ class MainViewController: UIViewController {
             }
             centeredCollectionViewFlowLayout.itemSize = itemSize
         }
-
+        
         // Configure the optional inter item spacing (OPTIONAL)
         centeredCollectionViewFlowLayout.minimumLineSpacing = 20
         
         let dateVal = getDateFromString(dateStr: pageInfoArr[0].publishDate)
         self.publishDateLabel.text = getDayOfWeek(date: dateVal)
+    }
+    
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        self.showWeatherView()
+    }
+    
+    
+    func setCurrentWeather(){
+
+        let location = LocationManager.shared.currentLocation
+
+        let xmlParser = XMLParser(contentsOf: URL(string: "http://20.200.184.193/api/CurrentWeather.do?lon=\(location.coordinate.longitude)&lat=\(location.coordinate.latitude)")!)
+        xmlParser?.delegate = self
+        xmlParser?.parse()
+        
+//        let xmlParserManager = XMLParserManager.shared
+//            xmlParserManager.setCurrentWeather()
+        
+        DispatchQueue.main.async {
+            
+            let item = self.xmlDictArr.first
+
+            self.wn_T1_label?.text = (item?["wn_T1"] as? String ?? "") + "℃"
+            self.wn_T1D_label?.text = "어제보다" + (item?["wn_T1D"] as? String ?? "") + " ℃↑"
+            self.wn_T1D_label?.text = item?["wn_T1D"] as? String ?? ""
+            self.wn_Mn_label?.text = "최저 " + (item?["wn_Mn"] as? String ?? "") + "℃"
+            self.wn_Mx_label?.text = "최고 " + (item?["wn_Mx"] as? String ?? "") + "℃"
+            if let wn_icon = item?["wn_icon"] as? String {
+                self.wn_icon?.image = UIImage(named: "0\(wn_icon).png")
+            }
+            
+        }
+
+
     }
     
     func createTodayHeadlineBtn() {
@@ -478,6 +532,15 @@ class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "noticeListVC") as! NoticeListViewController
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func showWeatherView() {
+        
+        let storyboard = UIStoryboard(name: "Weather", bundle: nil)
+        let naviVC = storyboard.instantiateViewController(withIdentifier: "WeatherNaviVC") as! UINavigationController
+        let vc = naviVC.viewControllers.first as! WeatherViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     func showStartJoinPopup() {
@@ -665,21 +728,21 @@ extension MainViewController: CallbackDelegate {
     }
 }
 /*
-extension MainViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
-        
-        if translation.y == 0 { return }
-        if translation.y > 0 {
-            // Scroll Down
-            showBottomBar()
-        } else {
-            // Scroll Up
-            hideBottomBar()
-        }
-    }
-}
-*/
+ extension MainViewController: UIScrollViewDelegate {
+ func scrollViewDidScroll(_ scrollView: UIScrollView) {
+ let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+ 
+ if translation.y == 0 { return }
+ if translation.y > 0 {
+ // Scroll Down
+ showBottomBar()
+ } else {
+ // Scroll Up
+ hideBottomBar()
+ }
+ }
+ }
+ */
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected Cell #\(indexPath.row)")
@@ -702,7 +765,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return 12
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: "Cell"), for: indexPath) as! PaperCollectionViewCell
         cell.paperImgView.load(url: URL(string: paperThumnailArr[indexPath.item])!)
@@ -713,25 +776,67 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     /*
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
-        if (actualPosition.x > 0){
-            // scroll to left
-            print("Current centered index: \(String(describing: centeredCollectionViewFlowLayout.currentCenteredPage))")
-        } else {
-            // scroll to right
-            print("Current centered index: \(String(describing: centeredCollectionViewFlowLayout.currentCenteredPage))")
-        }
-    }
-    */
+     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+     let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+     if (actualPosition.x > 0){
+     // scroll to left
+     print("Current centered index: \(String(describing: centeredCollectionViewFlowLayout.currentCenteredPage))")
+     } else {
+     // scroll to right
+     print("Current centered index: \(String(describing: centeredCollectionViewFlowLayout.currentCenteredPage))")
+     }
+     }
+     */
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         print("Current centered index: \(String(describing: centeredCollectionViewFlowLayout.currentCenteredPage ?? nil))")
         
         let dateVal = getDateFromString(dateStr: pageInfoArr[centeredCollectionViewFlowLayout.currentCenteredPage!].publishDate)
         self.publishDateLabel.text = getDayOfWeek(date: dateVal)
     }
-
+    
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         print("Current centered index: \(String(describing: centeredCollectionViewFlowLayout.currentCenteredPage ?? nil))")
     }
+}
+
+
+
+//MARK: - CLLocationManagerDelegate
+extension MainViewController: XMLParserDelegate {
+    
+    // XML 파서가 시작 테그를 만나면 호출됨
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        if elementName == "item" {
+            xmlDict = [:]
+        } else {
+            currentElement = elementName
+        }
+        
+    }
+    
+    // XML 파서가 종료 테그를 만나면 호출됨
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        
+        if elementName == "item" {
+            xmlDictArr.append(xmlDict)
+        }
+    }
+    
+    // 현재 테그에 담겨있는 문자열 전달
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        
+        if !string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            if xmlDict[currentElement] == nil {
+                xmlDict.updateValue(string, forKey: currentElement)
+            }
+        }
+        
+    }
+    
+    // 에러시, abortParsing()사용시
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error){
+        print(parseError)
+    }
+    
 }

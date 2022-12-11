@@ -65,6 +65,16 @@
 		7DE4C06A28A62D8F009EF842 /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DE4C06928A62D8F009EF842 /* Popup.storyboard */; };
 		7DE4C06C28A637E3009EF842 /* StartJoinPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE4C06B28A637E3009EF842 /* StartJoinPopupViewController.swift */; };
 		7DE4C06E28A6444E009EF842 /* JoinAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE4C06D28A6444E009EF842 /* JoinAuthViewController.swift */; };
+		D22923B02941808100D2EE58 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22923AF2941808100D2EE58 /* LocationManager.swift */; };
+		D25A205A2941CE9200A12072 /* XMLParserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A20592941CE9200A12072 /* XMLParserManager.swift */; };
+		D29BA04F29403A14001CD018 /* HourlyWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BA04729403A0F001CD018 /* HourlyWeatherCollectionViewCell.swift */; };
+		D29BA05029403A14001CD018 /* WeeklyWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BA04829403A10001CD018 /* WeeklyWeatherCollectionViewCell.swift */; };
+		D29BA05229403A14001CD018 /* CurrentWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BA04A29403A11001CD018 /* CurrentWeatherViewController.swift */; };
+		D29BA05329403A14001CD018 /* HourlyWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BA04B29403A12001CD018 /* HourlyWeatherViewController.swift */; };
+		D29BA05429403A14001CD018 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BA04C29403A13001CD018 /* ForecastViewController.swift */; };
+		D29BA05529403A14001CD018 /* WeeklyWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BA04D29403A13001CD018 /* WeeklyWeatherViewController.swift */; };
+		D29BA05D29403C33001CD018 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29BA05C29403C33001CD018 /* WeatherViewController.swift */; };
+		D29BA06029405C1F001CD018 /* Weather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D29BA06229405C1F001CD018 /* Weather.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +140,16 @@
 		7DE4C06928A62D8F009EF842 /* Popup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
 		7DE4C06B28A637E3009EF842 /* StartJoinPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartJoinPopupViewController.swift; sourceTree = "<group>"; };
 		7DE4C06D28A6444E009EF842 /* JoinAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinAuthViewController.swift; sourceTree = "<group>"; };
+		D22923AF2941808100D2EE58 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		D25A20592941CE9200A12072 /* XMLParserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParserManager.swift; sourceTree = "<group>"; };
+		D29BA04729403A0F001CD018 /* HourlyWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		D29BA04829403A10001CD018 /* WeeklyWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		D29BA04A29403A11001CD018 /* CurrentWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewController.swift; sourceTree = "<group>"; };
+		D29BA04B29403A12001CD018 /* HourlyWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyWeatherViewController.swift; sourceTree = "<group>"; };
+		D29BA04C29403A13001CD018 /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		D29BA04D29403A13001CD018 /* WeeklyWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherViewController.swift; sourceTree = "<group>"; };
+		D29BA05C29403C33001CD018 /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		D29BA06129405C1F001CD018 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Weather.storyboard; sourceTree = "<group>"; };
 		D51A7FEDCED735FDFD111F2F /* Pods_NongminNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NongminNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -281,6 +301,8 @@
 			children = (
 				38B8CC9528C386E900B49224 /* UIView+Extension.swift */,
 				3807045328E2177F00970149 /* NetworkManager.swift */,
+				D22923AF2941808100D2EE58 /* LocationManager.swift */,
+				D25A20592941CE9200A12072 /* XMLParserManager.swift */,
 				7D79A146292DEB2C00F65A33 /* AppCommonUtil.swift */,
 				38925044291C198200FCC853 /* AppUserDefault.swift */,
 				3807045A28E33E7900970149 /* Const.swift */,
@@ -333,6 +355,7 @@
 				38B8CC9328C3631900B49224 /* Apps */,
 				38B8CC9428C3849D00B49224 /* Common */,
 				38B8CC9228C3620C00B49224 /* MainControllers */,
+				D29BA046294039E5001CD018 /* WeatherViewer */,
 				7D0B5AF128BCB46300AF6E3F /* PaperViewer */,
 				389EB32928B51F780041F7AB /* Popups */,
 				7D8D425E28A24FCF001AAD12 /* Info.plist */,
@@ -356,6 +379,61 @@
 				7600FAA2BF183E5A0F3847C7 /* Pods-NongminNews.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D29BA046294039E5001CD018 /* WeatherViewer */ = {
+			isa = PBXGroup;
+			children = (
+				D29BA06229405C1F001CD018 /* Weather.storyboard */,
+				D29BA05729403A21001CD018 /* 날씨정보 */,
+			);
+			path = WeatherViewer;
+			sourceTree = "<group>";
+		};
+		D29BA05729403A21001CD018 /* 날씨정보 */ = {
+			isa = PBXGroup;
+			children = (
+				D29BA05C29403C33001CD018 /* WeatherViewController.swift */,
+				D29BA05829403A2C001CD018 /* 날씨정보 */,
+				D29BA05929403A30001CD018 /* 날씨예보 */,
+			);
+			name = "날씨정보";
+			sourceTree = "<group>";
+		};
+		D29BA05829403A2C001CD018 /* 날씨정보 */ = {
+			isa = PBXGroup;
+			children = (
+				D29BA04A29403A11001CD018 /* CurrentWeatherViewController.swift */,
+			);
+			name = "날씨정보";
+			sourceTree = "<group>";
+		};
+		D29BA05929403A30001CD018 /* 날씨예보 */ = {
+			isa = PBXGroup;
+			children = (
+				D29BA04C29403A13001CD018 /* ForecastViewController.swift */,
+				D29BA05B29403A56001CD018 /* 시간별 */,
+				D29BA05A29403A53001CD018 /* 주간별 */,
+			);
+			name = "날씨예보";
+			sourceTree = "<group>";
+		};
+		D29BA05A29403A53001CD018 /* 주간별 */ = {
+			isa = PBXGroup;
+			children = (
+				D29BA04D29403A13001CD018 /* WeeklyWeatherViewController.swift */,
+				D29BA04829403A10001CD018 /* WeeklyWeatherCollectionViewCell.swift */,
+			);
+			name = "주간별";
+			sourceTree = "<group>";
+		};
+		D29BA05B29403A56001CD018 /* 시간별 */ = {
+			isa = PBXGroup;
+			children = (
+				D29BA04B29403A12001CD018 /* HourlyWeatherViewController.swift */,
+				D29BA04729403A0F001CD018 /* HourlyWeatherCollectionViewCell.swift */,
+			);
+			name = "시간별";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +515,7 @@
 				387FBAD328C511B600C3CEBE /* calendar_next_pr@3x.png in Resources */,
 				7DE4C06A28A62D8F009EF842 /* Popup.storyboard in Resources */,
 				387FBAD228C511B600C3CEBE /* calendar_next_pr@2x.png in Resources */,
+				D29BA06029405C1F001CD018 /* Weather.storyboard in Resources */,
 				387FBAD028C511B600C3CEBE /* top_btn_close@2x.png in Resources */,
 				387FBACA28C511B600C3CEBE /* today_icon@2x.png in Resources */,
 			);
@@ -491,7 +570,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29BA04F29403A14001CD018 /* HourlyWeatherCollectionViewCell.swift in Sources */,
 				38925043291C141300FCC853 /* NewsModel.swift in Sources */,
+				D29BA05029403A14001CD018 /* WeeklyWeatherCollectionViewCell.swift in Sources */,
 				387FBADD28C511B600C3CEBE /* DayButton.swift in Sources */,
 				7DE4C06E28A6444E009EF842 /* JoinAuthViewController.swift in Sources */,
 				3807045928E21CAC00970149 /* NewsService.swift in Sources */,
@@ -499,7 +580,10 @@
 				38B8CC9628C386E900B49224 /* UIView+Extension.swift in Sources */,
 				3878CD05292100520008D4F9 /* SinglePaperViewController.swift in Sources */,
 				389F39A628A6BBAD00DF09FB /* AgreementPopupViewController.swift in Sources */,
+				D29BA05229403A14001CD018 /* CurrentWeatherViewController.swift in Sources */,
+				D29BA05329403A14001CD018 /* HourlyWeatherViewController.swift in Sources */,
 				7D8D426628A2542F001AAD12 /* MainViewController.swift in Sources */,
+				D25A205A2941CE9200A12072 /* XMLParserManager.swift in Sources */,
 				7D0B5AF728BCBA8300AF6E3F /* ZoomingScrollView.swift in Sources */,
 				387FBAD828C511B600C3CEBE /* Constants.swift in Sources */,
 				3807045228E2070300970149 /* PaperModel.swift in Sources */,
@@ -508,18 +592,22 @@
 				387FBADF28C511B600C3CEBE /* NormalCalendar.swift in Sources */,
 				38925040291BE2ED00FCC853 /* PaperService.swift in Sources */,
 				3807045B28E33E7900970149 /* Const.swift in Sources */,
+				D29BA05D29403C33001CD018 /* WeatherViewController.swift in Sources */,
 				7D8D425128A24FCD001AAD12 /* AppDelegate.swift in Sources */,
 				382EBAA52921158500EDDD95 /* ISVImageScrollView.swift in Sources */,
 				389F39A828A6D76B00DF09FB /* AuthFinishPopupViewController.swift in Sources */,
 				387FBADA28C511B600C3CEBE /* YYCalendar.swift in Sources */,
+				D29BA05529403A14001CD018 /* WeeklyWeatherViewController.swift in Sources */,
 				3807045428E2177F00970149 /* NetworkManager.swift in Sources */,
 				389EB32B28B520110041F7AB /* TimePickerViewController.swift in Sources */,
 				387FBADC28C511B600C3CEBE /* Image.swift in Sources */,
+				D29BA05429403A14001CD018 /* ForecastViewController.swift in Sources */,
 				3878CD032920D04C0008D4F9 /* ArticleDetailViewController.swift in Sources */,
 				7D0B5AF928BCBC9E00AF6E3F /* PaperMainViewController.swift in Sources */,
 				389EB32828B28DAE0041F7AB /* AppSetViewController.swift in Sources */,
 				38300EA42929F79F00533A2F /* ArticleListViewController.swift in Sources */,
 				38723EE328D8D129004EFC61 /* CustomSlider.swift in Sources */,
+				D22923B02941808100D2EE58 /* LocationManager.swift in Sources */,
 				387FBADE28C511B600C3CEBE /* LimitedCalendar.swift in Sources */,
 				7D0B5AF528BCBA6300AF6E3F /* PagingScrollView.swift in Sources */,
 				7DE4C06C28A637E3009EF842 /* StartJoinPopupViewController.swift in Sources */,
@@ -547,6 +635,14 @@
 				7D8D425C28A24FCF001AAD12 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D29BA06229405C1F001CD018 /* Weather.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D29BA06129405C1F001CD018 /* Base */,
+			);
+			name = Weather.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -673,12 +769,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NongminNews/NongminNews.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = V75A78F37J;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = FRTP94P3N2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NongminNews/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "농민신문_Dev";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 정보 제공을 위해 권한 허용이 필요합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보 제공을 위해 권한 허용이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보 제공을 위해 권한 허용이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -691,8 +792,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.nongmin.newspaper;
+				PRODUCT_BUNDLE_IDENTIFIER = co.kr.kissoft.Mcems.NongminTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = NongminTest_dev;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -706,12 +809,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NongminNews/NongminNews.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = V75A78F37J;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = FRTP94P3N2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NongminNews/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "농민신문_Dev";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 정보 제공을 위해 권한 허용이 필요합니다.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 정보 제공을 위해 권한 허용이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보 제공을 위해 권한 허용이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -724,8 +832,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.nongmin.newspaper;
+				PRODUCT_BUNDLE_IDENTIFIER = co.kr.kissoft.Mcems.NongminTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = NongminTest_inhouse;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
